@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href='home'>Home</a>
+          <a class="nav-link active" aria-current="page" href='home'>Productos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href='sellersHome'>Vendedores</a>
@@ -27,10 +27,9 @@
 <form action="createHomeProduct" method="POST" class="formulario">
 
 <select class="form-select" name="id_vendedor_fk">
-<option selected>Vendedor</option>
-    <option value="222"> Mariano Contrera</option>
-    <option value="301"> Tomas Perez</option>
-    <option value="601"> Mariano Hernandez</option>
+{foreach from=$sellers item=$seller}
+    <option selected value="{$seller->id_vendedor}">{$seller->nombre}</option>
+{/foreach} 
 </select>
 
 <div class="col-md-4">
@@ -66,22 +65,12 @@
       {foreach from=$products item=$product}
       <tbody>
         <tr>
-          <th>
-          {if $product->id_vendedor_fk == 222}
-            <option>Mariano Contrera</option>
-          {/if}
-            {if $product->id_vendedor_fk == 301}
-              <option>Tomas Perez</option>
-            {/if}
-            {if $product->id_vendedor_fk == 601}
-              <option> Mariano Hernandez</option>
-            {/if}
-          </th>
-          <td><a href="getProducts/{$product->id_producto}">{$product->tipo}</a></td>
+          <th>{$product->nombre}-{$product->id_vendedor_fk}</th>
+          <td><a href="getProduct/{$product->id_producto}">{$product->tipo}</a></td>
           <td>{$product->descripcion}</td>
           <td>${$product->precio}
           <a href="deleteProduct/{$product->id_producto}"><button type="button" class="btn btn-danger">Eliminar</button></a> 
-          <a href="viewEditProduct/{$product->id_producto}"><button type="button" class="btn btn-danger">Cambiar</button></a> 
+          <a href="viewEditProduct/{$product->tipo}"><button type="button" class="btn btn-danger">Cambiar</button></a> 
         </tr>
       </tbody>
     {/foreach} 
