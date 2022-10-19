@@ -8,8 +8,9 @@ class homeProductsView{
     function __construct(){
         $this->smarty = new Smarty();
     }
-    function showProducts($products){
+    function showProducts($products, $sellers){
         $this->smarty->assign('products', $products);
+        $this->smarty->assign('sellers', $sellers);
         $this->smarty->display('./Templates/Product/homeProducts.tpl');
         
     }
@@ -21,9 +22,11 @@ class homeProductsView{
         $this->smarty->display('./Templates/Product/showOneProduct.tpl');
     }
 
-    function editProduct($id){
-        $this->smarty->assign('id',$id);
-        $this->smarty->display('./Templates/Product/editProduct.tpl');
+    function editProduct($tipo, $descripcion, $precio){
+        $this->smarty->assign('tipo',$tipo);
+        $this->smarty->assign('descripcion',$descripcion);
+        $this->smarty->assign('precio',$precio);
+        $this->smarty->display('./Templates/Product/viewEditProduct.tpl');
     }
    
 }

@@ -59,7 +59,7 @@ switch ($params[0]){
         $homeSellersController->deleteSeller($params[1]);
         break;
      //   ------------------------------------------------------------------------------
-    case 'getProducts':
+    case 'getProduct':
         $homeProductsController->getProduct($params[1]);
         break;
     case 'getSeller':
@@ -67,7 +67,7 @@ switch ($params[0]){
         break;
     //   ------------------------------------------------------------------------------
     case 'viewEditProduct':
-        $homeProductsController->viewEditProduct($params[1]);
+        $homeProductsController->viewEditProduct($params[1],$params[1],$params[1]);
         break;
     case 'editProduct':
         $homeProductsController->editProduct();

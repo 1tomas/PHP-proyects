@@ -12,9 +12,12 @@ class homeSellersController{
            $this-> model = new sellersProductsModel();
            $this-> view = new sellersProductsView();
      }
-    
+     
+    function getSellers(){
+        return $this->model-> getSellers();
+    }
      function showHome(){
-        $sellers = $this->model-> getSeller();
+        $sellers = $this->model-> getSellers();
         $this->view->showSellers($sellers) ;
      }
     
@@ -40,12 +43,12 @@ class homeSellersController{
     }
     
     function getSeller($id){
-        $seller = $this->model->getSellers($id);
+        $seller = $this->model->getSeller($id);
         $this->view->viewSeller($seller);
     }
 
     function viewEditSeller($id){
-        $this->view->editSeller($id);
+        $this->view->viewEditSeller($id);
     }
 
     function editSeller(){   

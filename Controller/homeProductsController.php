@@ -2,20 +2,24 @@
 
 require_once "./Model/homeProductsModel.php";
 require_once "./View/homeProductsView.php";
+require_once "./Controller/homeSellersController.php";
 
 
 class homeProductsController{
      private $model;
      private $view;
+     private $homeSellersController;
 
      function __construct(){
            $this-> model = new homeProductsModel();
            $this-> view = new homeProductsView();
+           $this-> homeSellersController = new homeSellersController();
      }
     
      function showHome(){
+        $sellers = $this->homeSellersController->getSellers();
         $products = $this->model-> getProduct();
-        $this->view->showProducts($products) ;
+        $this->view->showProducts($products, $sellers);
      }
 
      function createHomeProduct(){
@@ -44,13 +48,13 @@ class homeProductsController{
         $this->view->viewProduct($producto);
     }
 
-    function viewEditProduct($id){
-        $this->view->editProduct($id);
+    function viewEditProduct($tipo , $descripcion, $precio){
+        $this->view->editProduct($tipo, $descripcion, $precio);
     }
 
     function editProduct(){   
-
-        $this->model->updateProductFromDB($_REQUEST['id_producto'], $_REQUEST['id_vendedor_fk'], $_REQUEST['tipo'] ,$_REQUEST['descripcion'], $_REQUEST['precio']);
+   
+        $this->model->updateProductFromDB($_REQUEST['tipo'] ,$_REQUEST['descripcion'], $_REQUEST['precio']);
         $this->view->showHomeProduct();
     }
 

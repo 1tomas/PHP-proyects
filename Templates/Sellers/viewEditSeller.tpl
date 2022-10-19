@@ -20,5 +20,5 @@
 </div>
 
 
-<a href="editSeller"><button type="button" class="btn btn-danger">Cambiar</button></a> 
+<a href="editSeller"><button type="button"  class="btn btn-danger">Cambiar</button></a> 
 </form>

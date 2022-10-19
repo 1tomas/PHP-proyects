@@ -21,9 +21,9 @@ class sellersProductsView{
         $this->smarty->display('./Templates/Sellers/showOneSeller.tpl');
     }
 
-    function editSeller($id){
+    function viewEditSeller($id){
         $this->smarty->assign('id',$id);
-        $this->smarty->display('./Templates/Sellers/editSeller.tpl');
+        $this->smarty->display('./Templates/Sellers/viewEditSeller.tpl');
     }
    
 }

@@ -7,7 +7,7 @@ class homeProductsModel{
         $this->db =  new PDO('mysql:host=localhost;'.'dbname=bruma; charset=utf8' , 'root', '');
     }
     function getProduct(){
-        $query = $this->db->prepare( 'SELECT * FROM producto');
+        $query = $this->db->prepare( 'SELECT a.*, b.* FROM producto a INNER JOIN vendedor b ON a.id_vendedor_fk = b.id_vendedor;');
 
         $query->execute();
         
@@ -27,9 +27,9 @@ class homeProductsModel{
         $query->execute([$id]);
     }
 
-    function updateProductFromDB($id_producto, $vendedor, $tipo ,$descripcion, $precio){
-        $query = $this->db->prepare("UPDATE producto SET id_vendedor_fk=?, tipo=?, descripcion=?, precio=? WHERE id_producto=?");
-        $query->execute([$id_producto, $vendedor, $tipo ,$descripcion, $precio]); 
+    function updateProductFromDB($tipo ,$descripcion, $precio){
+        $query = $this->db->prepare("UPDATE producto SET tipo=?, descripcion=?, precio=? WHERE tipo=?");
+        $query->execute([$tipo, $descripcion, $precio, $tipo]); 
     }
 
     function getProducts($id){
