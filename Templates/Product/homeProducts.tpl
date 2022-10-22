@@ -19,36 +19,35 @@
       <a href="logout"><button type="button" class="btn btn-primary">Deslogeate</button></a> 
     </div>
   </div>
-  </div>
+</div>
 
 
 <div class="container">
+  <form action="createHomeProduct" method="POST" class="formulario">
 
-<form action="createHomeProduct" method="POST" class="formulario">
+    <select class="form-select" name="id_vendedor_fk">
+      {foreach from=$sellers item=$seller}
+          <option selected value="{$seller->id_vendedor}">{$seller->nombre}-{$seller->id_vendedor}</option>
+      {/foreach} 
+    </select>
 
-<select class="form-select" name="id_vendedor_fk">
-{foreach from=$sellers item=$seller}
-    <option selected value="{$seller->id_vendedor}">{$seller->nombre}</option>
-{/foreach} 
-</select>
+    <div class="col-md-4">
+      <label for="validationCustom01" class="form-label">Tipo</label>
+      <input type="text" class="form-control" name="tipo" id="tipo" required>
+    </div>
 
-<div class="col-md-4">
-<label for="validationCustom01" class="form-label">Tipo</label>
-<input type="text" class="form-control" name="tipo" id="tipo" required>
-</div>
+    <div class="col-md-4">
+      <label for="validationCustom02" class="form-label">Descripcion</label>
+      <input type="text" class="form-control" name="descripcion" id="descripcion"  required>
+    </div>
 
-<div class="col-md-4">
-<label for="validationCustom02" class="form-label">Descripcion</label>
-<input type="text" class="form-control" name="descripcion" id="descripcion"  required>
-</div>
+    <div class="col-md-4">
+      <label for="validationCustom03" class="form-label">Precio</label>
+      <input type="text" class="form-control" name="precio" id="precio" required>
+    </div>
 
-<div class="col-md-4">
-<label for="validationCustom03" class="form-label">Precio</label>
-<input type="text" class="form-control" name="precio" id="precio" required>
-</div>
-
-<button type="submit" class="btn btn-primary">Enviar</button>
-</form>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
 
 
 
@@ -65,12 +64,13 @@
       {foreach from=$products item=$product}
       <tbody>
         <tr>
-          <th>{$product->nombre}-{$product->id_vendedor_fk}</th>
-          <td><a href="getProduct/{$product->id_producto}">{$product->tipo}</a></td>
+          <th>{$product->nombre}-{$product->id_vendedor}</th>
+          <td>{$product->tipo}</a></td>
           <td>{$product->descripcion}</td>
           <td>${$product->precio}
           <a href="deleteProduct/{$product->id_producto}"><button type="button" class="btn btn-danger">Eliminar</button></a> 
-          <a href="viewEditProduct/{$product->tipo}"><button type="button" class="btn btn-danger">Cambiar</button></a> 
+
+          <a href="getProduct/{$product->id_producto}"><button type="button" class="btn btn-danger">Cambiar</button></a> 
         </tr>
       </tbody>
     {/foreach} 

@@ -1,11 +1,12 @@
-{include file="Templates/header.tpl"}
-
-    <h1>ID :{$producto->id_vendedor_fk}</h1>
-    <h2>precio:{$producto->tipo}</h2>
-    <h3>descripcion:{$producto->descripcion}</h3>
-    <h3>Precio{$producto->precio}</h3>
+{include file="header.tpl"}
+    
+    <h1>ID:{$product->id_vendedor_fk}</h1> 
+    <h2>Tipo:{$product->tipo}</h2>
+    <h3>Descripcion:{$product->descripcion}</h3>
+    <h3>Precio: ${$product->precio}</h3>
     <a href="home">Volver</a>
-
-{include file="Templates/footer.tpl"}
+ 
+{include file="Product/formEditProduct.tpl"}
+{include file="footer.tpl"}
 
 

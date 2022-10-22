@@ -1,8 +1,8 @@
 <?php
 
-require_once './Controller/homeProductsController.php';
-require_once './Controller/homeSellersController.php';
-require_once "./Controller/loginController.php";
+require_once './App/Controller/homeProductsController.php';
+require_once './App/Controller/homeSellersController.php';
+require_once "./App/Controller/loginController.php";
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -20,14 +20,14 @@ $homeProductsController = new homeProductsController();
 $loginController = new loginController();
 
 switch ($params[0]){
-    //   ------------------------------REGISTRO------------------------------------------------ 
+    //   ------------------------------------------------------------------------------ 
     case 'register':
         $loginController->register();
         break;
     case 'registerVerify':
         $loginController->registerVerify();
         break;
-    //  ------------------------------LOGIN------------------------------------------------
+    //  ------------------------------------------------------------------------------
     case 'login':
         $loginController->login();
         break;
@@ -66,20 +66,13 @@ switch ($params[0]){
         $homeSellersController->getSeller($params[1]);
         break;
     //   ------------------------------------------------------------------------------
-    case 'viewEditProduct':
-        $homeProductsController->viewEditProduct($params[1],$params[1],$params[1]);
-        break;
     case 'editProduct':
-        $homeProductsController->editProduct();
-        break;
-    //   ------------------------------------------------------------------------------
-    case 'viewEditSeller':
-        $homeSellersController->viewEditSeller($params[1]);
+        $homeProductsController->editProduct($params[1]);
         break;
     case 'editSeller':
-        $homeSellersController->editSeller();
+        $homeSellersController->editSeller($params[1]);
         break;
-
+    //   ------------------------------------------------------------------------------
         default:
         echo('404 pagina no encontrada');
         break;

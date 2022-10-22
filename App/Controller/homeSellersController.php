@@ -1,7 +1,7 @@
 <?php
 
-require_once "./Model/homeSellersModel.php";
-require_once "./View/homeSellersView.php";
+require_once "./App/Model/homeSellersModel.php";
+require_once "./App/View/homeSellersView.php";
 
 
 class homeSellersController{
@@ -20,18 +20,17 @@ class homeSellersController{
         $sellers = $this->model-> getSellers();
         $this->view->showSellers($sellers) ;
      }
-    
 
      function createHomeSeller(){
-        $vendedor = $_REQUEST['id_vendedor'];
-        $nombre = $_REQUEST['nombre'];
-        $legajo = $_REQUEST['legajo'];
+        $seller = $_REQUEST['id_vendedor'];
+        $name = $_REQUEST['nombre'];
+        $file = $_REQUEST['legajo'];
 
         if(empty(($_REQUEST['id_vendedor'])) || empty(($_REQUEST['nombre'])) || empty(($_REQUEST['legajo']))){
             echo ('error');
             return;
         }else{
-            $this->model->insertSeller($vendedor, $nombre, $legajo);
+            $this->model->insertSeller($seller, $name, $file);
             $this->view->showHomeSeller();
         }
      }
@@ -47,13 +46,12 @@ class homeSellersController{
         $this->view->viewSeller($seller);
     }
 
-    function viewEditSeller($id){
-        $this->view->viewEditSeller($id);
-    }
-
-    function editSeller(){   
-            $this->model->updateSellerFromDB($_POST['id_vendedor'],$_POST['nombre'], $_POST['legajo']);
-            $this->view->showHomeSeller();
+    function editSeller($id){   
+        $seller = $_REQUEST['id_vendedor'];
+        $name = $_REQUEST['nombre'];
+        $file = $_REQUEST['legajo'];
+        $this->model->updateSellerFromDB($seller, $name, $file, $id);
+        $this->view->showHomeSeller();
      
     }
 

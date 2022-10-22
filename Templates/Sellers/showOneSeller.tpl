@@ -6,4 +6,5 @@
     <a href="home">Home</a>
     <a href="sellersHome">Vendedores</a>
 
+{include file="Sellers/formEditSeller.tpl"}
 {include file="Templates/footer.tpl"}

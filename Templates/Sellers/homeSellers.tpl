@@ -43,7 +43,7 @@
 
   <button type="submit" class="btn btn-primary">Enviar</button>
   </form>
- 
+
 </div>
 
   <div class="container">
@@ -59,11 +59,10 @@
       <tbody>
         <tr>
           <th>{$seller->id_vendedor}</th>
-          <td><a href="getSeller/{$seller->id_vendedor}">{$seller->nombre}</a></td>
+          <td>{$seller->nombre}</td>
           <td>#{$seller->legajo}
-
           <a href="deleteSeller/{$seller->id_vendedor}"><button type="button" class="btn btn-danger">Eliminar</button></a> 
-          <a href="viewEditSeller/{$seller->id_vendedor}"><button type="button" class="btn btn-danger">Cambiar</button></a> 
+          <a href="getSeller/{$seller->id_vendedor}"><button type="button" class="btn btn-danger">Cambiar</button></a> 
         </tr>
       </tbody>
     {/foreach} 
