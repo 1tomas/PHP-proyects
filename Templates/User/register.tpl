@@ -4,15 +4,15 @@
     <h1>{$titulo}</h1>
     <form method="post" action="registerVerify" class="register">
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <label for="exampleInputEmail1" class="form-label">Correo electronico</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" id="email" placeholder="Ingrese su E-mail" required>
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <div id="emailHelp" class="form-text">Tus datos estan a salvo.</div>
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
             <input type="password" class="form-control" id="exampleInputPassword1" name="password" id="password" placeholder="Ingrese su contraseña" required>
         </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary">Registrate</button>
     </form>
     <a href="login">¿Ya estas registrado?</a>
     {if $error!=""}

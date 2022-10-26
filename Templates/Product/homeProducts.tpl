@@ -18,11 +18,11 @@
         <strong>Registrarte!</strong> podras Agregar/Eliminar/Editar.
               <button type="button" class="button-nav" data-bs-dismiss="alert" aria-label="Close">X</button>
         </div>
-        <a href="login"><button type="button" class="btn btn-primary">Login</button></a> 
+        <a href="login"><button type="button" class="btn btn-primary">Iniciar sesión</button></a> 
       {/if}
       
       {if isset($smarty.session.readyLogged)}
-        <a href="logout"><button type="button" class="btn btn-primary">Deslogeate</button></a> 
+        <a href="logout"><button type="button" class="btn btn-primary">Cerrar sesión</button></a> 
       {/if}
       </nav>
   </div>

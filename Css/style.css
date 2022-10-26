@@ -46,7 +46,11 @@ body{
     width: 100%;
     margin-bottom: 10px;
 }
-
+.form-label{
+    background-color: rgb(153, 80, 37);
+    min-width: 400px;
+    padding: 10px;
+}
 
 .table{
     background-color: rgba(151, 85, 46, 0.856);
