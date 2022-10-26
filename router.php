@@ -10,10 +10,11 @@ if (!empty($_REQUEST['action'])){
     $action = $_REQUEST['action'];
 }
 else {
-    $action = 'login';
+    $action = 'home';
 }
 
 $params = explode('/',$action);
+
 
 $homeSellersController = new homeSellersController();   
 $homeProductsController = new homeProductsController(); 

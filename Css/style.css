@@ -1,9 +1,62 @@
-.container{
-    padding-bottom: 20px;
-    background-color: grey;
-    margin: 0;
+body{
+    background-image: url(../Imgs/fondo.png);
+    background-size: cover;
+    background-repeat: no-repeat
 }
 
-.table{
-   background-color: aqua;
+.navbar{
+    background-color: rgb(151, 85, 46);
+    padding: 0;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
+.navbar-nav{
+    display: flex;
+    flex-direction: row;
+}
+.nav-link{
+    margin: 0px 50px; 
+    color: black;
+}
+.alert{
+    padding: 0px 5px;
+    margin: 0px;
+}
+.button-nav{
+   border: none;
+   background-color: transparent;
+}
+
+.container{
+   justify-content: center;
+}
+.divForm{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.formulario{
+    font-weight: bold;
+    font-size: 30px;
+    text-align:center;
+	padding:15px;
+    width: 50%;
+}
+.col-md-4{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+
+.table{
+    background-color: rgba(151, 85, 46, 0.856);
+ }
+
+ .destacado{
+    background-color: rgba(151, 85, 46, 0.856);
+ }
+
+ .login, .register{
+    font-size: 30px;
+    background-color: rgb(151, 85, 46);
+ }

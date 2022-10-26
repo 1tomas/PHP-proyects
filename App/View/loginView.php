@@ -13,13 +13,13 @@ class loginView{
     function showRegister($error = ""){
         $this->smarty->assign('titulo','Register');
         $this->smarty->assign('error',$error);
-        $this->smarty->display("./Templates/login/register.tpl");
+        $this->smarty->display("./Templates/User/register.tpl");
     }
 
     function showLogin($error = ""){
         $this->smarty->assign('titulo','LOG IN');
         $this->smarty->assign('error',$error);
-        $this->smarty->display("./Templates/login/login.tpl");
+        $this->smarty->display("./Templates/User/login.tpl");
         
     }
 

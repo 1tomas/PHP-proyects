@@ -1,29 +1,37 @@
 {include file="Templates/header.tpl"}
 
-<div class="container">
-<nav class="navbar navbar-expand-lg bg-light">
+<div class="container-nav">
+
+<nav class="navbar">
   <div class="container-fluid">
     <a class="navbar-brand" href="home">Brumilda</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href='home'>Productos</a>
+          <a class="nav-link" aria-current="page" href='home'>Productos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href='sellersHome'>Vendedores</a>
+          <a class="nav-link" aria-current="page" href='sellersHome'>Vendedores</a>
         </li>
       </ul>
-      <a href="logout"><button type="button" class="btn btn-primary">Deslogeate</button></a>
-    </div>
+      {if !isset($smarty.session.readyLogged)}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Registrarte!</strong> podras Agregar/Eliminar/Editar.
+              <button type="button" class="button-nav" data-bs-dismiss="alert" aria-label="Close">X</button>
+        </div>
+        <a href="login"><button type="button" class="btn btn-primary">Login</button></a> 
+      {/if}
+      
+      {if isset($smarty.session.readyLogged)}
+        <a href="logout"><button type="button" class="btn btn-primary">Deslogeate</button></a> 
+      {/if}
+      </nav>
   </div>
-  </div>
+</div>
 
 
 
 <div class="container">
+<div class="divForm">
   <form action="createHomeSeller" method="POST" class="formulario">
 
     <div class="col-md-4">
@@ -41,29 +49,36 @@
       <input type="text" class="form-control" name="legajo" id="legajo" required>
     </div>
 
-  <button type="submit" class="btn btn-primary">Enviar</button>
+    <button type="submit" class="btn btn-primary">Enviar</button>
   </form>
+  </div>  
 
-</div>
 
-  <div class="container">
+
+
       <table class="table">
       <thead>
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Vendedor</th>
           <th scope="col">Legajo</th>
+          <th scope="col">Eliminar</th>
+          {if isset($smarty.session.readyLogged)}
+          <th scope="col">Editar</th>
+        {/if}
         </tr>
       </thead>
       {foreach from=$sellers item=$seller}
       <tbody>
         <tr>
           <th>{$seller->id_vendedor}</th>
-          <td>{$seller->nombre}</td>
+          <td><a href="getSeller/{$seller->id_vendedor}">{$seller->nombre}</a></td>
           <td>#{$seller->legajo}
-          <a href="deleteSeller/{$seller->id_vendedor}"><button type="button" class="btn btn-danger">Eliminar</button></a> 
-          <a href="getSeller/{$seller->id_vendedor}"><button type="button" class="btn btn-danger">Cambiar</button></a> 
-        </tr>
+          <td><a href="deleteSeller/{$seller->id_vendedor}"><button type="button" class="btn btn-danger">Eliminar</button></a></td> 
+          {if isset($smarty.session.readyLogged)}
+          <td><a href="getSeller/{$seller->id_vendedor}"><button type="button" class="btn btn-danger">Cambiar</button></a></td>
+        {/if}
+          </tr>
       </tbody>
     {/foreach} 
     </table>
