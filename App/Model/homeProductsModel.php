@@ -6,8 +6,8 @@ class homeProductsModel{
     function __construct(){
         $this->db =  new PDO('mysql:host=localhost;'.'dbname=bruma; charset=utf8' , 'root', '');
     }
-    function getProduct(){
-        $query = $this->db->prepare( 'SELECT * FROM producto');
+    function getProducts(){
+        $query = $this->db->prepare( 'SELECT a.*, b.* FROM producto a INNER JOIN vendedor b ON a.id_vendedor_fk = b.id_vendedor;');
 
         $query->execute();
         
@@ -15,28 +15,32 @@ class homeProductsModel{
 
         return $products;
     }
-    function insertProduct($vendedor, $tipo, $descripcion, $precio){
+
+    function insertProduct($sellerFk, $type ,$description, $price){
 
         $query = $this->db->prepare( 'INSERT INTO producto(id_vendedor_fk, tipo, descripcion, precio) VALUES (?,?,?,?)');
 
-        $query->execute([$vendedor, $tipo, $descripcion, $precio]);
+        $query->execute([$sellerFk, $type ,$description, $price]);
 
     }
+
     function deleteProductFromDB($id){
         $query = $this->db->prepare("DELETE FROM producto WHERE id_producto=?");
         $query->execute([$id]);
     }
 
-    function updateProductFromDB($id_producto, $vendedor, $tipo ,$descripcion, $precio){
-        $query = $this->db->prepare("UPDATE producto SET id_vendedor_fk=?, tipo=?, descripcion=?, precio=? WHERE id_producto=?");
-        $query->execute([$id_producto, $vendedor, $tipo ,$descripcion, $precio]); 
-    }
-
-    function getProducts($id){
+    function getProduct($id){
         $query = $this->db->prepare( "SELECT * FROM PRODUCTO WHERE id_producto=?");
         $query->execute([$id]); 
-        $producto = $query->fetch(PDO::FETCH_OBJ);   
-        return $producto ;
+        $product = $query->fetch(PDO::FETCH_OBJ);   
+        return $product;
     }
+
+    function updateProductFromDB($sellerFk, $type ,$description, $price, $id){
+        $query = $this->db->prepare("UPDATE producto SET id_vendedor_fk=?, tipo=?, descripcion=?, precio=? WHERE id_producto=?");
+        $query->execute([$sellerFk, $type ,$description, $price, $id]); 
+    }
+
+    
 
 }

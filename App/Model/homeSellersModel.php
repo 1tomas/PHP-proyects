@@ -6,7 +6,8 @@ class sellersProductsModel{
     function __construct(){
         $this->db =  new PDO('mysql:host=localhost;'.'dbname=bruma; charset=utf8' , 'root', '');
     }
-    function getSeller(){
+    
+    function getSellers(){
         $query = $this->db->prepare( 'SELECT * FROM vendedor');
 
         $query->execute();
@@ -15,29 +16,29 @@ class sellersProductsModel{
 
         return $sellers;
     }
-    function insertSeller($vendedor, $nombre, $legajo){
+
+    function insertSeller($seller, $name, $file){
 
         $query = $this->db->prepare( 'INSERT INTO vendedor(id_vendedor, nombre, legajo) VALUES (?,?,?)');
 
-        $query->execute([$vendedor, $nombre, $legajo]);
+        $query->execute([$seller, $name, $file]);
 
     }
+
     function deleteSellerFromDB($id){
         $query = $this->db->prepare("DELETE FROM vendedor WHERE id_vendedor=?");
         $query->execute([$id]);
     }
 
- 
-
-    function getSellers($id){
+    function getSeller($id){
         $query = $this->db->prepare( "SELECT * FROM vendedor WHERE id_vendedor=?");
         $query->execute([$id]); 
         $seller = $query->fetch(PDO::FETCH_OBJ);   
         return $seller ;
     }
 
-    function updateSellerFromDB($nombre,$legajo, $id){
-        $query = $this->db->prepare("UPDATE vendedor SET nombre=?, legajo=? WHERE id_vendedor=?");
-        $query->execute([$nombre, $legajo, $id]); 
+    function updateSellerFromDB($seller, $name, $file, $id){
+        $query = $this->db->prepare("UPDATE vendedor SET id_vendedor=?, nombre=?, legajo=? WHERE id_vendedor=?");
+        $query->execute([$seller, $name, $file, $id]); 
     }
 }

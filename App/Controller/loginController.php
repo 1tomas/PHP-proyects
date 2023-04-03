@@ -1,7 +1,7 @@
 <?php
 
-require_once "./Model/userModel.php";
-require_once "./View/loginView.php";
+require_once "./App/Model/userModel.php";
+require_once "./App/View/loginView.php";
 
 
 class loginController{
@@ -26,6 +26,7 @@ class loginController{
             if(!isset($user->email)){
                 $this->model->insertUser($email,$password);
                 session_start();
+                $_SESSION['readyLogged'] = true;
                 $_SESSION["email"] = $email;
 
                 $this->view->showHomeProduct();
@@ -39,16 +40,19 @@ class loginController{
         $this->view->showLogin();
     }  
     function loginVerify(){
+
         if(!empty($_POST['email']) && !empty($_POST['password'])){
             $email = $_POST['email'];
             $password = $_POST['password'];
+
+
             $user = $this->model->getUsers($email);
             
             if($user && password_verify($password, $user->password) ){
                 session_start();
-                $_SESSION["email"] == $_POST['email'];
+                $_SESSION['email'] == $user->email;
                 $_SESSION['password'] ==  $user->password;
-                $_SESSION['rol'] = $user->rol;
+                $_SESSION['readyLogged'] = true;
                 $this->view->showHomeProduct();  
             }else{
                 $this->view->showLogin('E-mail o contraseña incorrecta');  
@@ -58,6 +62,6 @@ class loginController{
     function logout(){
         session_start();
         session_destroy();
-        $this->view->showLogin("te deslogueaste!!");
+        $this->view->showHomeProduct(); 
     }    
 }   

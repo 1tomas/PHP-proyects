@@ -1,11 +1,45 @@
-{include file="Templates/header.tpl"}
+{include file="header.tpl"}
 
-    <h1>ID :{$producto->id_vendedor_fk}</h1>
-    <h2>precio:{$producto->tipo}</h2>
-    <h3>descripcion:{$producto->descripcion}</h3>
-    <h3>id:{$producto->precio}</h3>
-    <a href="home">Volver</a>
+<div class="container-nav">
 
-{include file="Templates/footer.tpl"}
+<nav class="navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="home">Brumilda</a>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href='home'>Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href='sellersHome'>Vendedores</a>
+        </li>
+      </ul>
+      {if !isset($smarty.session.readyLogged)}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Registrarte!</strong> podras Agregar/Eliminar/Editar.
+              <button type="button" class="button-nav" data-bs-dismiss="alert" aria-label="Close">X</button>
+        </div>
+        <a href="login"><button type="button" class="btn btn-primary">Iniciar sesión</button></a> 
+      {/if}
+      
+      {if isset($smarty.session.readyLogged)}
+        <a href="logout"><button type="button" class="btn btn-primary">Cerrar sesión</button></a> 
+      {/if}
+  </div>
+</div>
+
+
+    <div class="destacado">
+      <h1>ID:{$product->id_vendedor_fk}</h1> 
+      <h2>Tipo:{$product->tipo}</h2>
+      <h3>Descripcion:{$product->descripcion}</h3>
+      <h3>Precio: ${$product->precio}</h3>
+      <a href="home">Volver</a>
+    </div>
+    
+
+{if isset($smarty.session.readyLogged)}
+{include file="Product/formEditProduct.tpl"}
+{/if}
+{include file="footer.tpl"}
 
 
